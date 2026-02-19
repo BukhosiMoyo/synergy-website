@@ -1,0 +1,3 @@
+Primary: premium navy (TBD hex)
+Accent: teal (TBD hex)
+Neutrals: slate/charcoal (TBD hex)

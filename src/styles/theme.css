@@ -1,0 +1,34 @@
+/* 
+  Synergy Evolution — Token-Based Theme System
+  Using RGB format for Tailwind alpha-channel support
+*/
+
+:root {
+  --background: 255 255 255;
+  --surface: 248 250 252;
+  --card: 255 255 255;
+  --foreground: 15 23 42;
+  --muted: 100 116 139;
+  --primary: 11 30 58;
+  /* #0b1e3a - Adjusted for institutional Navy */
+  --accent: 14 165 165;
+  /* #0ea5a5 - Adjusted for Teal */
+
+  /* Internal helper for persistent dark sections in Light Mode */
+  --surface-inverse: 11 30 58;
+  --foreground-inverse: 248 250 252;
+}
+
+.dark {
+  --background: 8 15 28;
+  --surface: 15 23 42;
+  --card: 20 28 45;
+  --foreground: 226 232 240;
+  --muted: 148 163 184;
+  --primary: 15 23 42;
+  --accent: 14 165 165;
+
+  /* In Dark Mode, inverse sections match standard dark surfaces */
+  --surface-inverse: 8 15 28;
+  --foreground-inverse: 226 232 240;
+}
