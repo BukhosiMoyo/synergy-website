@@ -7,139 +7,116 @@ import Link from "next/link";
 import { fadeInUp } from "@/components/motion/motionPresets";
 import {
     ArrowRight,
-    Quote,
-    CheckCircle2,
+    ChevronRight,
+    Boxes,
     Clock,
-    BarChart3,
-    Target,
-    TrendingUp,
-    Zap,
-    Shield,
-    Timer,
+    Globe,
+    Banknote,
+    Award,
 } from "lucide-react";
+import { caseStudies } from "@/data/case-studies";
 
-const CASE_STUDIES = [
-    {
-        client: "COGTA National Office",
-        headline: "1,100,000 Assets Verified",
-        quote: "Synergy Evolution's systematic approach culminated in an unqualified audit opinion for our department.",
-        stats: [
-            { label: "Assets Verified", value: "1.1M", icon: BarChart3 },
-            { label: "Completion", value: "24 Weeks", icon: Clock },
-            { label: "Audit Result", value: "Unqualified", icon: Shield },
-            { label: "Reconciled", value: "100%", icon: Target },
-        ],
-        accentColor: "from-blue-600 to-blue-400",
-        tags: ["National Department", "Full Verification", "GRAP Compliance"],
-    },
-    {
-        client: "City of Tshwane Municipality",
-        headline: "Regional Asset Compliance Achieved",
-        quote: "The team delivered a complete asset register reconciliation that met all GRAP compliance requirements.",
-        stats: [
-            { label: "Operations Optimized", value: "50%", icon: TrendingUp },
-            { label: "Cost Reduction", value: "20%", icon: Zap },
-            { label: "Hours Saved/Month", value: "70+", icon: Timer },
-            { label: "Faster Processing", value: "2x", icon: Target },
-        ],
-        accentColor: "from-blue-500 to-cyan-400",
-        tags: ["Municipality", "Reconciliation", "Operational Efficiency"],
-    },
-];
+const featured = caseStudies.filter((cs) => cs.featured).slice(0, 4);
 
 export default function CaseStudyHighlights() {
     return (
         <Section
             badge="Case Studies"
-            title="See How Asset Management Transforms Organizations"
-            subtitle="Real institutions, real results with our asset verification and compliance solutions."
+            title="Proven Results Across 25+ Institutions"
+            subtitle="Real clients, real outcomes — from municipalities and SOEs to international governments."
         >
-            <div className="space-y-8">
-                {CASE_STUDIES.map((study, idx) => (
-                    <motion.div
-                        key={study.client}
-                        variants={fadeInUp}
-                        initial="initial"
-                        whileInView="animate"
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.15 }}
-                        className="group relative rounded-2xl bg-subtle border border-subtle overflow-hidden card-hover-glow"
-                    >
-                        {/* Top accent gradient bar */}
-                        <div className={`h-1 w-full bg-gradient-to-r ${study.accentColor}`} />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+                {featured.map((study, idx) => {
+                    const metrics = [
+                        study.assetCount && { icon: Boxes, label: "Assets", value: study.assetCount },
+                        study.contractValue && { icon: Banknote, label: "Value", value: study.contractValue },
+                        study.duration && { icon: Clock, label: "Duration", value: study.duration },
+                        study.executionLevel && { icon: Globe, label: "Scope", value: study.executionLevel },
+                    ].filter(Boolean) as { icon: typeof Boxes; label: string; value: string }[];
 
-                        <div className="p-8 md:p-10">
-                            {/* Tags row */}
-                            <div className="flex flex-wrap items-center gap-2 mb-6">
-                                {study.tags.map((tag) => (
-                                    <span
-                                        key={tag}
-                                        className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border border-subtle bg-foreground/[0.03] text-dim"
-                                    >
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
+                    return (
+                        <motion.div
+                            key={study.slug}
+                            variants={fadeInUp}
+                            initial="initial"
+                            whileInView="animate"
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 }}
+                        >
+                            <Link
+                                href={`/case-studies/${study.slug}`}
+                                className="group block relative rounded-2xl bg-subtle border border-subtle overflow-hidden card-hover-glow h-full"
+                            >
+                                {/* Accent bar */}
+                                <div className="h-1 w-full bg-gradient-to-r from-accent to-highlight" />
 
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-                                {/* Left — Content */}
-                                <div>
-                                    <span className="text-xs font-bold uppercase tracking-widest text-accent/80 mb-3 block">
-                                        {study.client}
-                                    </span>
-                                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6 tracking-tight leading-tight">
-                                        {study.headline}
-                                    </h3>
-
-                                    {/* Quote block */}
-                                    <div className="relative pl-5 mb-8">
-                                        <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-full bg-gradient-to-b from-accent to-accent/20" />
-                                        <Quote className="w-5 h-5 text-accent/30 mb-2" />
-                                        <p className="text-dim text-base leading-relaxed italic">
-                                            {study.quote}
-                                        </p>
+                                <div className="p-7 md:p-8 flex flex-col h-full">
+                                    {/* Tags */}
+                                    <div className="flex flex-wrap items-center gap-2 mb-5">
+                                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border border-subtle bg-accent/5 text-accent">
+                                            {study.sector}
+                                        </span>
+                                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border border-subtle bg-foreground/[0.03] text-dim">
+                                            {study.serviceType}
+                                        </span>
+                                        {study.auditResult && (
+                                            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-highlight/10 text-highlight">
+                                                <Award className="w-3 h-3" />
+                                                {study.auditResult}
+                                            </span>
+                                        )}
                                     </div>
 
-                                    <Link href="/case-studies/">
-                                        <Button className="bg-accent hover:bg-highlight text-white border-0 shadow-md shadow-accent/15 group/btn">
-                                            View Full Case Study
-                                            <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover/btn:translate-x-1" />
-                                        </Button>
-                                    </Link>
-                                </div>
+                                    {/* Title */}
+                                    <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 tracking-tight leading-snug group-hover:text-accent transition-colors">
+                                        {study.title}
+                                    </h3>
 
-                                {/* Right — Stats Grid */}
-                                <div className="grid grid-cols-2 gap-3">
-                                    {study.stats.map((stat, i) => {
-                                        const StatIcon = stat.icon;
-                                        return (
-                                            <div
-                                                key={stat.label}
-                                                className="relative p-5 rounded-xl bg-foreground/[0.02] border border-subtle group/stat hover:border-accent/20 transition-all duration-300"
-                                            >
-                                                <div className="flex items-center gap-2 mb-3">
-                                                    <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
-                                                        <StatIcon className="w-4 h-4 text-accent" />
-                                                    </div>
-                                                    {i === 0 && (
-                                                        <CheckCircle2 className="w-4 h-4 text-green-500 ml-auto" />
-                                                    )}
+                                    {/* Summary */}
+                                    <p className="text-sm text-dim leading-relaxed mb-6 line-clamp-3">
+                                        {study.summary}
+                                    </p>
+
+                                    {/* Metrics mini-grid */}
+                                    {metrics.length > 0 && (
+                                        <div className="grid grid-cols-2 gap-3 mb-6">
+                                            {metrics.slice(0, 4).map((m) => (
+                                                <div key={m.label} className="p-3 rounded-lg bg-foreground/[0.02] border border-subtle text-center">
+                                                    <m.icon className="w-4 h-4 text-accent mx-auto mb-1" />
+                                                    <div className="text-base font-extrabold text-foreground">{m.value}</div>
+                                                    <div className="text-[9px] text-dimmer uppercase tracking-wider">{m.label}</div>
                                                 </div>
-                                                <div className="text-2xl md:text-3xl font-extrabold text-foreground mb-1 tracking-tight">
-                                                    {stat.value}
-                                                </div>
-                                                <div className="text-[10px] font-semibold uppercase tracking-wider text-dimmer">
-                                                    {stat.label}
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {/* CTA */}
+                                    <div className="mt-auto flex items-center text-sm font-semibold text-accent group-hover:text-highlight transition-colors">
+                                        View Case Study
+                                        <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                ))}
+                            </Link>
+                        </motion.div>
+                    );
+                })}
             </div>
+
+            {/* View all CTA */}
+            <motion.div
+                variants={fadeInUp}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                className="text-center"
+            >
+                <Link href="/case-studies">
+                    <Button variant="outline" size="lg" className="px-8">
+                        View All {caseStudies.length} Case Studies
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                </Link>
+            </motion.div>
         </Section>
     );
 }

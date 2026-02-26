@@ -6,6 +6,7 @@ import Card from "@/components/ui/Card";
 import { fadeInUp } from "@/components/motion/motionPresets";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import {
     Search,
     FileCheck2,
@@ -13,6 +14,7 @@ import {
     ScrollText,
     ShieldCheck,
     Wrench,
+    ArrowRight,
 } from "lucide-react";
 
 const SERVICES = [
@@ -20,31 +22,37 @@ const SERVICES = [
         title: "Physical Asset Verification",
         description: "Multi-parameter ground verification of thousands of assets with geolocated evidence and condition assessment.",
         icon: <Search className="w-5 h-5" />,
+        href: "/solutions/asset-verification",
     },
     {
         title: "FAR Reconciliation",
         description: "Expert reconciliation between physical counts, financial FAR, and general ledger accounts for audit stability.",
         icon: <FileCheck2 className="w-5 h-5" />,
+        href: "/solutions/fixed-asset-management",
     },
     {
         title: "Verification Systems",
         description: "Deployment of specialist software to automate the data collection, verification, and reporting lifecycle.",
         icon: <Monitor className="w-5 h-5" />,
+        href: "/solutions/system-implementation-training",
     },
     {
         title: "Policy & Lifecycle Frameworks",
         description: "Developing comprehensive asset policies and strategic lifecycle plans aligned with global governance standards.",
         icon: <ScrollText className="w-5 h-5" />,
+        href: "/solutions/lifecycle-custodian-tracking",
     },
     {
         title: "Audit Support & Reporting",
         description: "Direct support during audit cycles, providing validated evidence to address Auditor General queries.",
         icon: <ShieldCheck className="w-5 h-5" />,
+        href: "/solutions/compliance-audit-reporting",
     },
     {
         title: "Ongoing Maintenance",
         description: "Continuous monitoring and register updates to ensure asset data remains current beyond the audit window.",
         icon: <Wrench className="w-5 h-5" />,
+        href: "/solutions",
     },
 ];
 
@@ -71,12 +79,19 @@ export default function ServiceCardsGrid() {
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.05 }}
                     >
-                        <Card
-                            title={service.title}
-                            description={service.description}
-                            icon={service.icon}
-                            className="h-full"
-                        />
+                        <Link href={service.href} className="block group h-full">
+                            <Card
+                                title={service.title}
+                                description={service.description}
+                                icon={service.icon}
+                                className="h-full group-hover:border-accent/30 transition-colors"
+                            >
+                                <span className="inline-flex items-center text-xs font-semibold text-accent mt-3 group-hover:text-highlight transition-colors">
+                                    Learn more
+                                    <ArrowRight className="w-3 h-3 ml-1 transform group-hover:translate-x-1 transition-transform" />
+                                </span>
+                            </Card>
+                        </Link>
                     </motion.div>
                 ))}
             </div>

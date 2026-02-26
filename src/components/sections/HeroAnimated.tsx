@@ -118,10 +118,10 @@ export default function HeroAnimated() {
                                     className="flex items-center justify-center gap-8 md:gap-12"
                                 >
                                     {[
-                                        { value: "500+", label: "Clients Served" },
-                                        { value: "98%", label: "Audit Success" },
+                                        { value: "25+", label: "Institutional Clients" },
                                         { value: "2M+", label: "Assets Verified" },
-                                        { value: "9", label: "Provinces" },
+                                        { value: "7+", label: "Unqualified Audits" },
+                                        { value: "3", label: "Countries" },
                                     ].map((stat, idx) => (
                                         <React.Fragment key={stat.label}>
                                             {idx > 0 && <div className="w-px h-8 bg-border-base" />}

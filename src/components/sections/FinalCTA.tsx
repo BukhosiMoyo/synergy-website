@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import { fadeInUp } from "@/components/motion/motionPresets";
-import { CalendarHeart } from "lucide-react";
+import { CalendarHeart, Phone } from "lucide-react";
 import Link from "next/link";
 import { BGPattern } from "@/components/ui/bg-pattern";
 
@@ -22,19 +22,28 @@ export default function FinalCTA() {
                 <span className="section-badge mb-6 inline-block">Get Started</span>
 
                 <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-foreground">
-                    Let Us Handle Your Assets So You Can Scale Faster
+                    Achieve Unqualified Audit Outcomes — Every Year
                 </h2>
 
                 <p className="text-base md:text-lg text-dim mb-10 leading-relaxed max-w-xl mx-auto">
-                    Book a strategic consultation today and start achieving audit-ready compliance with confidence.
+                    Join 25+ institutions across South Africa, Botswana and Eswatini
+                    that trust Synergy Evolution to deliver audit-ready compliance.
                 </p>
 
-                <Link href="/booking/">
-                    <Button size="lg" className="px-10 py-5 bg-accent hover:bg-highlight text-white border-0">
-                        Schedule a Strategic Consultation
-                        <CalendarHeart className="w-5 h-5" />
-                    </Button>
-                </Link>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <Link href="/booking/">
+                        <Button size="lg" className="px-10 py-5 bg-accent hover:bg-highlight text-white border-0">
+                            Book a Strategic Consultation
+                            <CalendarHeart className="w-5 h-5" />
+                        </Button>
+                    </Link>
+                    <Link href="/contact-us/">
+                        <Button variant="outline" size="lg" className="px-10 py-5">
+                            Contact Us
+                            <Phone className="w-5 h-5" />
+                        </Button>
+                    </Link>
+                </div>
             </motion.div>
 
             {/* Radial glow background */}

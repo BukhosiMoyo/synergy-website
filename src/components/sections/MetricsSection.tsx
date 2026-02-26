@@ -19,8 +19,8 @@ const METRICS = [
     },
     {
         label: "Project Value Delivered",
-        value: "R17M+",
-        description: "In asset management project value delivered to clients",
+        value: "R15M+",
+        description: "In asset management project value delivered to government and private sector clients",
         icon: <Banknote className="w-6 h-6" />,
     },
     {
@@ -31,8 +31,8 @@ const METRICS = [
     },
     {
         label: "Regional Execution",
-        value: "National & Int.",
-        description: "Deployment capacity across all 9 provinces and beyond",
+        value: "3 Countries",
+        description: "Serving South Africa, Botswana, and Eswatini across all sectors",
         icon: <Globe className="w-6 h-6" />,
     },
 ];
