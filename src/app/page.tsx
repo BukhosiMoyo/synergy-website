@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import HeroAnimated from "@/components/sections/HeroAnimated";
 import MetricsSection from "@/components/sections/MetricsSection";
-import WhoWeServe from "@/components/sections/WhoWeServe";
+import SolutionsTabs from "@/components/sections/SolutionsTabs";
+import PlatformPreview from "@/components/sections/PlatformPreview";
 import ServiceCardsGrid from "@/components/sections/ServiceCardsGrid";
+import ProcessOrbital from "@/components/sections/ProcessOrbital";
 import CaseStudyHighlights from "@/components/sections/CaseStudyHighlights";
-import TrustedInstitutions from "@/components/sections/TrustedInstitutions";
+import BenefitsGrid from "@/components/sections/WhoWeServe";
 import FinalCTA from "@/components/sections/FinalCTA";
 
 export const metadata: Metadata = {
@@ -17,10 +19,12 @@ export default function HomePage() {
     <main>
       <HeroAnimated />
       <MetricsSection />
-      <WhoWeServe />
+      <SolutionsTabs />
+      <PlatformPreview />
       <ServiceCardsGrid />
+      <ProcessOrbital />
       <CaseStudyHighlights />
-      <TrustedInstitutions />
+      <BenefitsGrid />
       <FinalCTA />
     </main>
   );

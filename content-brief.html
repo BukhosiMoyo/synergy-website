@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synergy Evolution — Website Content Brief</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        @media print {
+            body { font-size: 11pt; }
+            .page-break { page-break-before: always; }
+            .no-print { display: none !important; }
+            .cover { min-height: 100vh; }
+        }
+
+        /* Cover Page */
+        .cover {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0d0d2b 100%);
+            color: white;
+        }
+        .cover-logo {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #6c8cff;
+            margin-bottom: 40px;
+        }
+        .cover h1 {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+        .cover .subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.6);
+            max-width: 500px;
+            margin-bottom: 50px;
+        }
+        .cover-meta {
+            display: flex;
+            gap: 40px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+        }
+        .cover-meta span { font-weight: 600; color: rgba(255,255,255,0.7); }
+
+        /* Content */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: #f8f9fc;
+            border-radius: 12px;
+            border: 1px solid #e8eaf0;
+        }
+        .toc h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+        }
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dotted #ddd;
+            font-size: 14px;
+        }
+        .toc-item:last-child { border-bottom: none; }
+        .toc-item .priority {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .priority-critical { background: #fee2e2; color: #dc2626; }
+        .priority-high { background: #fef3c7; color: #d97706; }
+        .priority-medium { background: #dbeafe; color: #2563eb; }
+        .priority-nice { background: #f0fdf4; color: #16a34a; }
+
+        /* Section Headers */
+        .section-header {
+            margin: 50px 0 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #1a1a2e;
+        }
+        .section-header h2 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1a1a2e;
+        }
+        .section-header .priority-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .section-header p {
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* Content Items */
+        .content-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fc;
+            border-radius: 10px;
+            border-left: 4px solid #6c8cff;
+        }
+        .content-item h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #1a1a2e;
+        }
+        .content-item .description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .content-item .format {
+            font-size: 12px;
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Input Fields (for writing) */
+        .input-area {
+            border: 1.5px dashed #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            min-height: 80px;
+            background: white;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #999;
+        }
+        .input-area.short { min-height: 40px; }
+        .input-area.tall { min-height: 120px; }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 6px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 13px;
+        }
+        .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ccc;
+            border-radius: 3px;
+            background: white;
+        }
+
+        /* Repeat Block (for case studies) */
+        .repeat-block {
+            border: 2px solid #e8eaf0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            background: white;
+        }
+        .repeat-block .block-header {
+            font-size: 14px;
+            font-weight: 700;
+            color: #6c8cff;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        th, td {
+            padding: 10px 12px;
+            border: 1px solid #e8eaf0;
+            text-align: left;
+        }
+        th {
+            background: #f0f2f8;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Notes */
+        .note {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 14px 18px;
+            font-size: 13px;
+            color: #92400e;
+            margin: 16px 0;
+        }
+        .note strong { color: #78350f; }
+
+        .tip {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 14px 18px;
+            font-size: 13px;
+            color: #166534;
+            margin: 16px 0;
+        }
+
+        /* Footer */
+        .doc-footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 2px solid #e8eaf0;
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+        }
+
+        /* Print-friendly button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1a1a2e;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        .print-btn:hover { background: #2a2a4e; }
+    </style>
+</head>
+<body>
+
+    <!-- Print / Save as PDF Button -->
+    <button class="print-btn no-print" onclick="window.print()">💾 Save as PDF</button>
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="cover">
+        <div class="cover-logo">Synergy Evolution</div>
+        <h1>Website Content Brief</h1>
+        <p class="subtitle">
+            A structured guide for the content writer outlining all required text, data, and media for the Synergy Evolution website.
+        </p>
+        <div class="cover-meta">
+            <div>Prepared: <span>26 February 2026</span></div>
+            <div>Version: <span>1.0</span></div>
+            <div>Status: <span>Awaiting Content</span></div>
+        </div>
+    </div>
+
+    <!-- ==================== CONTENT ==================== -->
+    <div class="content">
+
+        <!-- INTRO -->
+        <div style="margin-bottom: 40px;">
+            <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 12px;">Instructions for the Content Writer</h2>
+            <p>This document lists every piece of content needed for the Synergy Evolution website. Items are grouped by page and sorted by priority. For each item, please provide the requested text, data, or files in the format specified.</p>
+            <div class="note">
+                <strong>⚡ How to use this document:</strong> Work through each section, fill in the content or attach referenced files. Check off items as you complete them. Return the completed document (or a folder of files) to the project team.
+            </div>
+        </div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc">
+            <h2>📋 Table of Contents</h2>
+            <div class="toc-item"><span>1. About Page</span> <span class="priority priority-critical">CRITICAL</span></div>
+            <div class="toc-item"><span>2. Contact Us Page</span> <span class="priority priority-critical">CRITICAL</span></div>
+            <div class="toc-item"><span>3. Case Studies (×5 minimum)</span> <span class="priority priority-high">HIGH</span></div>
+            <div class="toc-item"><span>4. Solution / Service Pages (×5)</span> <span class="priority priority-high">HIGH</span></div>
+            <div class="toc-item"><span>5. Homepage Sections</span> <span class="priority priority-medium">MEDIUM</span></div>
+            <div class="toc-item"><span>6. Client Logos & Trust Marks</span> <span class="priority priority-medium">MEDIUM</span></div>
+            <div class="toc-item"><span>7. Team Profiles</span> <span class="priority priority-medium">MEDIUM</span></div>
+            <div class="toc-item"><span>8. Testimonials & Quotes</span> <span class="priority priority-nice">NICE TO HAVE</span></div>
+            <div class="toc-item"><span>9. Media & Photography</span> <span class="priority priority-nice">NICE TO HAVE</span></div>
+            <div class="toc-item"><span>10. Legal & Compliance</span> <span class="priority priority-nice">NICE TO HAVE</span></div>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- SECTION 1: ABOUT PAGE -->
+        <!-- ================================================ -->
+        <div class="page-break"></div>
+        <div class="section-header">
+            <span class="priority-tag priority-critical">🔴 Critical Priority</span>
+            <h2>1. About Page</h2>
+            <p>Currently a placeholder. This is one of the most visited pages on any business website.</p>
+        </div>
+
+        <div class="content-item">
+            <h3>1.1 Company Overview / History</h3>
+            <p class="description">A summary of how Synergy Evolution was founded, when, by whom, and why. Include any pivotal moments or milestones that shaped the company.</p>
+            <p class="format">📄 Format: 150–300 words, paragraph style</p>
+            <div class="input-area tall">Write here or attach document...</div>
+        </div>
+
+        <div class="content-item">
+            <h3>1.2 Mission Statement</h3>
+            <p class="description">A clear, concise statement of the company's core purpose and what it aims to achieve for its clients.</p>
+            <p class="format">📄 Format: 1–3 sentences</p>
+            <div class="input-area short">Write here...</div>
+        </div>
+
+        <div class="content-item">
+            <h3>1.3 Vision Statement</h3>
+            <p class="description">Where the company sees itself in the future — the aspirational goal.</p>
+            <p class="format">📄 Format: 1–2 sentences</p>
+            <div class="input-area short">Write here...</div>
+        </div>
+
+        <div class="content-item">
+            <h3>1.4 Company Values</h3>
+            <p class="description">Core values that drive the business (e.g., Integrity, Excellence, Accountability, Innovation). For each, provide a 1–2 sentence explanation.</p>
+            <p class="format">📄 Format: List of 4–6 values with descriptions</p>
+            <div class="input-area tall">Write here...</div>
+        </div>
+
+        <div class="content-item">
+            <h3>1.5 Key Milestones / Timeline</h3>
+            <p class="description">Significant achievements by year (e.g., "2018 — Founded in Johannesburg", "2022 — Reached 2M+ assets verified").</p>
+            <p class="format">📄 Format: Year + Achievement (5–10 entries)</p>
+            <div class="input-area tall">Write here...</div>
+        </div>
+
+        <div class="content-item">
+            <h3>1.6 Certifications & Accreditations</h3>
+            <p class="description">Any industry certifications, BBBEE level, ISO certifications, professional body memberships, etc.</p>
+            <p class="format">📄 Format: List with certificate names and levels</p>
+            <div class="input-area">Write here...</div>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- SECTION 2: CONTACT US -->
+        <!-- ================================================ -->
+        <div class="page-break"></div>
+        <div class="section-header">
+            <span class="priority-tag priority-critical">🔴 Critical Priority</span>
+            <h2>2. Contact Us Page</h2>
+            <p>Currently a placeholder. Essential for lead generation and credibility.</p>
+        </div>
+
+        <div class="content-item">
+            <h3>2.1 Office Addresses</h3>
+            <p class="description">Full physical address(es) for each office location.</p>
+            <table>
+                <tr><th>Office</th><th>Full Address</th><th>City</th></tr>
+                <tr><td>Head Office</td><td style="min-width:300px"></td><td></td></tr>
+                <tr><td>Branch (if any)</td><td></td><td></td></tr>
+            </table>
+        </div>
+
+        <div class="content-item">
+            <h3>2.2 Phone Numbers</h3>
+            <table>
+                <tr><th>Department / Label</th><th>Number</th></tr>
+                <tr><td>Main Office</td><td></td></tr>
+                <tr><td>Sales / Enquiries</td><td></td></tr>
+                <tr><td>Support (if different)</td><td></td></tr>
+            </table>
+        </div>
+
+        <div class="content-item">
+            <h3>2.3 Email Addresses</h3>
+            <table>
+                <tr><th>Purpose</th><th>Email Address</th></tr>
+                <tr><td>General Enquiries</td><td></td></tr>
+                <tr><td>Sales</td><td></td></tr>
+                <tr><td>Support</td><td></td></tr>
+                <tr><td>Careers (if applicable)</td><td></td></tr>
+            </table>
+        </div>
+
+        <div class="content-item">
+            <h3>2.4 Business Hours</h3>
+            <table>
+                <tr><th>Day</th><th>Hours</th></tr>
+                <tr><td>Monday – Friday</td><td></td></tr>
+                <tr><td>Saturday</td><td></td></tr>
+                <tr><td>Sunday & Public Holidays</td><td></td></tr>
+            </table>
+        </div>
+
+        <div class="content-item">
+            <h3>2.5 Social Media Links</h3>
+            <table>
+                <tr><th>Platform</th><th>URL</th></tr>
+                <tr><td>LinkedIn</td><td></td></tr>
+                <tr><td>Facebook</td><td></td></tr>
+                <tr><td>Twitter / X</td><td></td></tr>
+                <tr><td>Instagram</td><td></td></tr>
+                <tr><td>YouTube</td><td></td></tr>
+            </table>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- SECTION 3: CASE STUDIES -->
+        <!-- ================================================ -->
+        <div class="page-break"></div>
+        <div class="section-header">
+            <span class="priority-tag priority-high">🟡 High Priority</span>
+            <h2>3. Case Studies</h2>
+            <p>We need at least 5 detailed case studies. PDFs of existing reports are ideal — we can extract and rewrite for the web. Fill one block per case study.</p>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Tip:</strong> If you have existing PDF case study reports, proposal documents, or project close-out reports, simply attach them. We will extract the relevant content and format it for the website. No need to rewrite!
+        </div>
+
+        <!-- Case Study Template (repeat for each) -->
+        <div class="repeat-block">
+            <div class="block-header">📁 Case Study #1</div>
+            <table>
+                <tr><td style="width:200px; font-weight:600;">Client Name (or Anonymized)</td><td></td></tr>
+                <tr><td style="font-weight:600;">Sector</td><td>☐ Public &nbsp; ☐ Private &nbsp; ☐ NGO &nbsp; ☐ Other</td></tr>
+                <tr><td style="font-weight:600;">Service Type</td><td>☐ Asset Mgmt &nbsp; ☐ Verification &nbsp; ☐ Compliance &nbsp; ☐ Systems &nbsp; ☐ Other</td></tr>
+                <tr><td style="font-weight:600;">Year / Period</td><td></td></tr>
+                <tr><td style="font-weight:600;">Project Duration</td><td></td></tr>
+            </table>
+            <div class="content-item" style="margin-top:12px; border-left-color:#d97706;">
+                <h3>The Challenge</h3>
+                <p class="description">What problem did the client face? What was broken or at risk?</p>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>What We Delivered</h3>
+                <p class="description">What did Synergy Evolution do? Services, methodology, team deployed.</p>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Key Results & Statistics</h3>
+                <p class="description">Concrete, measurable outcomes (e.g., "1.2M assets reconciled", "Unqualified audit achieved", "80% reduction in reconciliation time").</p>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Client Quote / Testimonial (if available)</h3>
+                <p class="description">A direct quote from the client about the experience or outcome.</p>
+                <div class="input-area short">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Attached PDFs or Reports</h3>
+                <p class="description">List any attached files for this case study.</p>
+                <div class="input-area short">File name(s)...</div>
+            </div>
+        </div>
+
+        <div class="repeat-block">
+            <div class="block-header">📁 Case Study #2</div>
+            <table>
+                <tr><td style="width:200px; font-weight:600;">Client Name (or Anonymized)</td><td></td></tr>
+                <tr><td style="font-weight:600;">Sector</td><td>☐ Public &nbsp; ☐ Private &nbsp; ☐ NGO &nbsp; ☐ Other</td></tr>
+                <tr><td style="font-weight:600;">Service Type</td><td>☐ Asset Mgmt &nbsp; ☐ Verification &nbsp; ☐ Compliance &nbsp; ☐ Systems &nbsp; ☐ Other</td></tr>
+                <tr><td style="font-weight:600;">Year / Period</td><td></td></tr>
+                <tr><td style="font-weight:600;">Project Duration</td><td></td></tr>
+            </table>
+            <div class="content-item" style="margin-top:12px; border-left-color:#d97706;">
+                <h3>The Challenge</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>What We Delivered</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Key Results & Statistics</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Client Quote / Testimonial</h3>
+                <div class="input-area short">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Attached PDFs or Reports</h3>
+                <div class="input-area short">File name(s)...</div>
+            </div>
+        </div>
+
+        <div class="repeat-block">
+            <div class="block-header">📁 Case Study #3</div>
+            <table>
+                <tr><td style="width:200px; font-weight:600;">Client Name (or Anonymized)</td><td></td></tr>
+                <tr><td style="font-weight:600;">Sector</td><td>☐ Public &nbsp; ☐ Private &nbsp; ☐ NGO &nbsp; ☐ Other</td></tr>
+                <tr><td style="font-weight:600;">Service Type</td><td>☐ Asset Mgmt &nbsp; ☐ Verification &nbsp; ☐ Compliance &nbsp; ☐ Systems &nbsp; ☐ Other</td></tr>
+                <tr><td style="font-weight:600;">Year / Period</td><td></td></tr>
+                <tr><td style="font-weight:600;">Project Duration</td><td></td></tr>
+            </table>
+            <div class="content-item" style="margin-top:12px; border-left-color:#d97706;">
+                <h3>The Challenge</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>What We Delivered</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Key Results & Statistics</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Client Quote / Testimonial</h3>
+                <div class="input-area short">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Attached PDFs or Reports</h3>
+                <div class="input-area short">File name(s)...</div>
+            </div>
+        </div>
+
+        <div class="repeat-block">
+            <div class="block-header">📁 Case Study #4</div>
+            <table>
+                <tr><td style="width:200px; font-weight:600;">Client Name (or Anonymized)</td><td></td></tr>
+                <tr><td style="font-weight:600;">Sector</td><td>☐ Public &nbsp; ☐ Private &nbsp; ☐ NGO &nbsp; ☐ Other</td></tr>
+                <tr><td style="font-weight:600;">Service Type</td><td>☐ Asset Mgmt &nbsp; ☐ Verification &nbsp; ☐ Compliance &nbsp; ☐ Systems &nbsp; ☐ Other</td></tr>
+                <tr><td style="font-weight:600;">Year / Period</td><td></td></tr>
+                <tr><td style="font-weight:600;">Project Duration</td><td></td></tr>
+            </table>
+            <div class="content-item" style="margin-top:12px; border-left-color:#d97706;">
+                <h3>The Challenge</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>What We Delivered</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Key Results & Statistics</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Client Quote / Testimonial</h3>
+                <div class="input-area short">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Attached PDFs or Reports</h3>
+                <div class="input-area short">File name(s)...</div>
+            </div>
+        </div>
+
+        <div class="repeat-block">
+            <div class="block-header">📁 Case Study #5</div>
+            <table>
+                <tr><td style="width:200px; font-weight:600;">Client Name (or Anonymized)</td><td></td></tr>
+                <tr><td style="font-weight:600;">Sector</td><td>☐ Public &nbsp; ☐ Private &nbsp; ☐ NGO &nbsp; ☐ Other</td></tr>
+                <tr><td style="font-weight:600;">Service Type</td><td>☐ Asset Mgmt &nbsp; ☐ Verification &nbsp; ☐ Compliance &nbsp; ☐ Systems &nbsp; ☐ Other</td></tr>
+                <tr><td style="font-weight:600;">Year / Period</td><td></td></tr>
+                <tr><td style="font-weight:600;">Project Duration</td><td></td></tr>
+            </table>
+            <div class="content-item" style="margin-top:12px; border-left-color:#d97706;">
+                <h3>The Challenge</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>What We Delivered</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Key Results & Statistics</h3>
+                <div class="input-area">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Client Quote / Testimonial</h3>
+                <div class="input-area short">Write here...</div>
+            </div>
+            <div class="content-item" style="border-left-color:#d97706;">
+                <h3>Attached PDFs or Reports</h3>
+                <div class="input-area short">File name(s)...</div>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>📎 Have more than 5 case studies?</strong> Even better! Duplicate this template or simply attach all PDFs/documents and label which client each belongs to.
+        </div>
+
+        <!-- ================================================ -->
+        <!-- SECTION 4: SOLUTIONS / SERVICES -->
+        <!-- ================================================ -->
+        <div class="page-break"></div>
+        <div class="section-header">
+            <span class="priority-tag priority-high">🟡 High Priority</span>
+            <h2>4. Solution / Service Page Content</h2>
+            <p>We have 5 solution pages. The current content is functional but could be enriched with real details. For each service, please provide or validate the following.</p>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Tip:</strong> If you have service brochures, proposal templates, or pitch decks that describe these services, just attach them. We'll extract the relevant copy.
+        </div>
+
+        <table>
+            <tr>
+                <th>Service Page</th>
+                <th>Currently Has Content?</th>
+                <th>Needs Enrichment?</th>
+            </tr>
+            <tr><td>Fixed Asset Management</td><td>✅ Yes (basic)</td><td>✅ Real stats, detailed methodology</td></tr>
+            <tr><td>Asset Verification & Reconciliation</td><td>✅ Yes (basic)</td><td>✅ Specific tools used, team sizes</td></tr>
+            <tr><td>Lifecycle & Custodian Tracking</td><td>✅ Yes (basic)</td><td>✅ Workflow details, integration info</td></tr>
+            <tr><td>Compliance & Audit Reporting</td><td>✅ Yes (basic)</td><td>✅ Specific frameworks, report examples</td></tr>
+            <tr><td>System Implementation & Training</td><td>✅ Yes (basic)</td><td>✅ Training duration, SOP examples</td></tr>
+        </table>
+
+        <div class="content-item">
+            <h3>For EACH service, provide (if available):</h3>
+            <ul class="checklist">
+                <li>Detailed service description (what exactly does the team do?)</li>
+                <li>Tools, technologies, or platforms used</li>
+                <li>Typical project timeline (e.g., "4–12 weeks")</li>
+                <li>Team composition / size deployed</li>
+                <li>Deliverables the client receives</li>
+                <li>Standards / frameworks aligned to (GRAP, mSCOA, PFMA, MFMA, etc.)</li>
+                <li>Pricing model (if publicly available) — e.g., per-asset, project-based, retainer</li>
+                <li>Any differentiators vs. competitors</li>
+            </ul>
+            <div class="input-area tall">Attach brochure / pitch deck, or write details here per service...</div>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- SECTION 5: HOMEPAGE -->
+        <!-- ================================================ -->
+        <div class="page-break"></div>
+        <div class="section-header">
+            <span class="priority-tag priority-medium">🔵 Medium Priority</span>
+            <h2>5. Homepage Content Validation</h2>
+            <p>The homepage is built. Please validate or update these key data points.</p>
+        </div>
+
+        <div class="content-item">
+            <h3>5.1 Hero Headline & Subtext</h3>
+            <p class="description">Current: "Governance-Driven Asset Management at Institutional Scale." Is this accurate and the messaging you want?</p>
+            <p class="format">📄 Format: Headline (8–15 words) + subtext (1–2 sentences)</p>
+            <div class="input-area">Confirm, adjust, or rewrite...</div>
+        </div>
+
+        <div class="content-item">
+            <h3>5.2 Key Metrics (Verify Accuracy)</h3>
+            <p class="description">These numbers appear prominently. Please confirm or correct:</p>
+            <table>
+                <tr><th>Metric</th><th>Current Value</th><th>Correct Value</th></tr>
+                <tr><td>Assets Verified</td><td>2,000,000+</td><td></td></tr>
+                <tr><td>Project Value Delivered</td><td>R17M+</td><td></td></tr>
+                <tr><td>Unqualified Audit Outcomes</td><td>7+</td><td></td></tr>
+                <tr><td>Regional Execution</td><td>National & International</td><td></td></tr>
+            </table>
+        </div>
+
+        <div class="content-item">
+            <h3>5.3 "Trusted By" Client Logos</h3>
+            <p class="description">A scrolling marquee showing client logos. Provide logo files (PNG/SVG preferred) and the organization name.</p>
+            <p class="format">📁 Format: Image files (PNG/SVG) + list of names</p>
+            <div class="input-area">List client names whose logos we may display...</div>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- SECTION 6: CLIENT LOGOS -->
+        <!-- ================================================ -->
+        <div class="section-header">
+            <span class="priority-tag priority-medium">🔵 Medium Priority</span>
+            <h2>6. Client Logos & Trust Marks</h2>
+            <p>Logos boost credibility enormously. Provide as many as you have permission to use.</p>
+        </div>
+
+        <div class="content-item">
+            <h3>Client Logos for "Trusted By" Section</h3>
+            <ul class="checklist">
+                <li>Logo files in PNG or SVG format (transparent background preferred)</li>
+                <li>Written permission to use each logo (internal confirmation is fine)</li>
+                <li>Whether to use the full-color logo or a monochrome version</li>
+            </ul>
+            <div class="input-area">List organizations and attach logo files...</div>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- SECTION 7: TEAM PROFILES -->
+        <!-- ================================================ -->
+        <div class="section-header">
+            <span class="priority-tag priority-medium">🔵 Medium Priority</span>
+            <h2>7. Team Profiles (for About Page)</h2>
+            <p>For each key team member to feature on the website.</p>
+        </div>
+
+        <div class="content-item">
+            <h3>Per Team Member, Provide:</h3>
+            <table>
+                <tr><th>Field</th><th>Details</th></tr>
+                <tr><td>Full Name</td><td></td></tr>
+                <tr><td>Job Title / Role</td><td></td></tr>
+                <tr><td>Short Bio (2–4 sentences)</td><td></td></tr>
+                <tr><td>Professional Photo</td><td>📁 Attach file (headshot, professional quality)</td></tr>
+                <tr><td>LinkedIn URL (optional)</td><td></td></tr>
+            </table>
+            <div class="note">
+                <strong>Recommended:</strong> Feature at least the CEO/Founder, COO/Operations Lead, and 1–2 senior consultants. More is better.
+            </div>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- SECTION 8: TESTIMONIALS -->
+        <!-- ================================================ -->
+        <div class="page-break"></div>
+        <div class="section-header">
+            <span class="priority-tag priority-nice">🟢 Nice to Have</span>
+            <h2>8. Client Testimonials & Quotes</h2>
+            <p>Powerful social proof. Even 2–3 quotes make a big difference.</p>
+        </div>
+
+        <div class="content-item">
+            <h3>Per Testimonial, Provide:</h3>
+            <table>
+                <tr><th>Field</th><th>Details</th></tr>
+                <tr><td>Quote Text</td><td></td></tr>
+                <tr><td>Person's Name</td><td></td></tr>
+                <tr><td>Their Title / Role</td><td></td></tr>
+                <tr><td>Organization</td><td></td></tr>
+                <tr><td>Photo (optional)</td><td>📁 Attach file</td></tr>
+            </table>
+            <div class="input-area tall">Add additional testimonials here...</div>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- SECTION 9: MEDIA -->
+        <!-- ================================================ -->
+        <div class="section-header">
+            <span class="priority-tag priority-nice">🟢 Nice to Have</span>
+            <h2>9. Photography & Media</h2>
+            <p>Real photos of your team, office, and fieldwork are far more compelling than stock images.</p>
+        </div>
+
+        <div class="content-item">
+            <h3>Types of Photos Needed:</h3>
+            <ul class="checklist">
+                <li>Office interior / exterior photos</li>
+                <li>Team photos (group shots, candids)</li>
+                <li>Fieldwork photos (verification teams, barcode scanning, site visits)</li>
+                <li>Event photos (conferences, training sessions)</li>
+                <li>Product screenshots (if the platform has a UI to show)</li>
+            </ul>
+            <p class="format">📁 Format: High-resolution images (min 1200px wide), JPG or PNG</p>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- SECTION 10: LEGAL -->
+        <!-- ================================================ -->
+        <div class="section-header">
+            <span class="priority-tag priority-nice">🟢 Nice to Have</span>
+            <h2>10. Legal & Compliance Content</h2>
+            <p>Standard pages that build trust and may be legally required.</p>
+        </div>
+
+        <div class="content-item">
+            <h3>Items Needed:</h3>
+            <ul class="checklist">
+                <li>Privacy Policy (or key points for us to draft one)</li>
+                <li>Terms of Service / Terms of Use</li>
+                <li>POPIA Compliance Statement (if applicable)</li>
+                <li>Cookie Policy</li>
+                <li>Company registration number</li>
+                <li>BBBEE Certificate level</li>
+            </ul>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- SUMMARY CHECKLIST -->
+        <!-- ================================================ -->
+        <div class="page-break"></div>
+        <div class="section-header">
+            <h2>📋 Final Delivery Checklist</h2>
+            <p>Use this to track what's been completed before sending back.</p>
+        </div>
+
+        <table>
+            <tr><th style="width:40px;">☐</th><th>Item</th><th>Priority</th><th>Status</th></tr>
+            <tr><td>☐</td><td>About Page content (history, mission, vision, values)</td><td class="priority-critical" style="text-align:center;">CRITICAL</td><td></td></tr>
+            <tr><td>☐</td><td>Contact Us details (addresses, phones, emails, hours, socials)</td><td class="priority-critical" style="text-align:center;">CRITICAL</td><td></td></tr>
+            <tr><td>☐</td><td>Case Study #1 (completed or PDF attached)</td><td class="priority-high" style="text-align:center;">HIGH</td><td></td></tr>
+            <tr><td>☐</td><td>Case Study #2</td><td class="priority-high" style="text-align:center;">HIGH</td><td></td></tr>
+            <tr><td>☐</td><td>Case Study #3</td><td class="priority-high" style="text-align:center;">HIGH</td><td></td></tr>
+            <tr><td>☐</td><td>Case Study #4</td><td class="priority-high" style="text-align:center;">HIGH</td><td></td></tr>
+            <tr><td>☐</td><td>Case Study #5</td><td class="priority-high" style="text-align:center;">HIGH</td><td></td></tr>
+            <tr><td>☐</td><td>Service page enrichment (brochures / details)</td><td class="priority-high" style="text-align:center;">HIGH</td><td></td></tr>
+            <tr><td>☐</td><td>Homepage metrics validated</td><td class="priority-medium" style="text-align:center;">MEDIUM</td><td></td></tr>
+            <tr><td>☐</td><td>Client logos (files + permission)</td><td class="priority-medium" style="text-align:center;">MEDIUM</td><td></td></tr>
+            <tr><td>☐</td><td>Team profiles + headshots</td><td class="priority-medium" style="text-align:center;">MEDIUM</td><td></td></tr>
+            <tr><td>☐</td><td>Testimonials / client quotes</td><td class="priority-nice" style="text-align:center;">NICE</td><td></td></tr>
+            <tr><td>☐</td><td>Photography / media files</td><td class="priority-nice" style="text-align:center;">NICE</td><td></td></tr>
+            <tr><td>☐</td><td>Legal content (privacy, terms, POPIA)</td><td class="priority-nice" style="text-align:center;">NICE</td><td></td></tr>
+        </table>
+
+        <!-- FOOTER -->
+        <div class="doc-footer">
+            <p>Synergy Evolution — Website Content Brief v1.0 — February 2026</p>
+            <p>Prepared by the development team. Please return completed document with all attachments.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -2,58 +2,78 @@
 
 import { motion } from "framer-motion";
 import Section from "@/components/ui/Section";
+import Card from "@/components/ui/Card";
 import { fadeInUp } from "@/components/motion/motionPresets";
+import {
+    ShieldCheck,
+    TrendingDown,
+    Database,
+    Scale,
+    Expand,
+    Eye,
+} from "lucide-react";
+import { RetroGrid } from "@/components/ui/retro-grid";
 
-export default function WhoWeServe() {
+const BENEFITS = [
+    {
+        title: "Audit Readiness",
+        description: "Achieve and maintain unqualified audit outcomes with validated asset data and comprehensive evidence packages.",
+        icon: <ShieldCheck className="w-5 h-5" />,
+    },
+    {
+        title: "Cost Reduction",
+        description: "Minimize ghost assets, optimize maintenance spend, and improve capital allocation with accurate asset visibility.",
+        icon: <TrendingDown className="w-5 h-5" />,
+    },
+    {
+        title: "Data Accuracy",
+        description: "Eliminate discrepancies between physical assets and financial registers through systematic reconciliation processes.",
+        icon: <Database className="w-5 h-5" />,
+    },
+    {
+        title: "Regulatory Compliance",
+        description: "Ensure GRAP, mSCOA, PFMA, and MFMA compliance with frameworks designed for South African public sector requirements.",
+        icon: <Scale className="w-5 h-5" />,
+    },
+    {
+        title: "Scalability",
+        description: "From municipal offices to national departments — our processes scale to handle millions of assets without compromising accuracy.",
+        icon: <Expand className="w-5 h-5" />,
+    },
+    {
+        title: "Real-Time Visibility",
+        description: "Live dashboards and reporting tools that give stakeholders instant insight into asset status, location, and condition.",
+        icon: <Eye className="w-5 h-5" />,
+    },
+];
+
+export default function BenefitsGrid() {
     return (
-        <Section variant="default">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Public Sector Card */}
-                <motion.div
-                    variants={fadeInUp}
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true }}
-                    className="group relative p-10 md:p-14 rounded-3xl bg-card border border-border transition-all duration-500 hover:shadow-2xl hover:border-accent/30 overflow-hidden"
-                >
-                    <div className="absolute top-0 right-0 p-8 opacity-[0.03] grayscale group-hover:grayscale-0 group-hover:opacity-[0.08] transition-all">
-                        <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><path d="M3 21h18" /><path d="M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7H3" /><path d="M9 17h6" /><path d="M10 21v-4" /><path d="M14 21v-4" /></svg>
-                    </div>
-
-                    <h3 className="text-3xl font-bold mb-6 text-primary">Public Sector</h3>
-                    <ul className="space-y-4 text-lg">
-                        {["Audit readiness", "GRAP alignment", "PFMA / MFMA compliance", "Asset register integrity"].map((item) => (
-                            <li key={item} className="flex items-start gap-3 text-muted">
-                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                </motion.div>
-
-                {/* Private Sector Card */}
-                <motion.div
-                    variants={fadeInUp}
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="group relative p-10 md:p-14 rounded-3xl bg-card border border-border transition-all duration-500 hover:shadow-2xl hover:border-accent/30 overflow-hidden"
-                >
-                    <div className="absolute top-0 right-0 p-8 opacity-[0.03] grayscale group-hover:grayscale-0 group-hover:opacity-[0.08] transition-all">
-                        <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
-                    </div>
-
-                    <h3 className="text-3xl font-bold mb-6 text-primary">Private Sector</h3>
-                    <ul className="space-y-4 text-lg">
-                        {["Asset lifecycle optimization", "Financial control alignment", "Capital asset visibility", "Operational performance"].map((item) => (
-                            <li key={item} className="flex items-start gap-3 text-muted">
-                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                </motion.div>
+        <Section
+            variant="muted"
+            badge="Benefits"
+            title="The Key Benefits for Your Organization"
+            subtitle="Discover how our asset management solutions enhance efficiency, reduce costs, and drive compliance."
+        >
+            <RetroGrid className="opacity-30" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {BENEFITS.map((benefit, idx) => (
+                    <motion.div
+                        key={benefit.title}
+                        variants={fadeInUp}
+                        initial="initial"
+                        whileInView="animate"
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.05 }}
+                    >
+                        <Card
+                            title={benefit.title}
+                            description={benefit.description}
+                            icon={benefit.icon}
+                            className="h-full"
+                        />
+                    </motion.div>
+                ))}
             </div>
         </Section>
     );

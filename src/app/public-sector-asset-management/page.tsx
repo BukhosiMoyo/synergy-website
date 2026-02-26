@@ -3,6 +3,7 @@ import Section from "@/components/ui/Section";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
+import { BGPattern } from "@/components/ui/bg-pattern";
 
 export const metadata: Metadata = {
     title: "Public Sector Asset Management | Audit Readiness & Compliance",
@@ -55,6 +56,7 @@ export default function PublicSectorPage() {
             </Section>
 
             <Section variant="default" title="Sector-Specific Service Delivery">
+                <BGPattern variant="grid" mask="fade-y" size={28} />
                 <p className="text-xl text-muted max-w-3xl mb-16 leading-relaxed">
                     Our Public Sector methodology is built on the requirements of the MFMA, PFMA, and GRAP standards, ensuring institutional stability and legislative compliance.
                 </p>
@@ -71,6 +73,7 @@ export default function PublicSectorPage() {
             </Section>
 
             <Section variant="muted" title="Target Public Institutions">
+                <BGPattern variant="dots" mask="fade-edges" size={20} />
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                     {[
                         "National Departments",

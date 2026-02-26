@@ -1,34 +1,41 @@
 /* 
   Synergy Evolution — Token-Based Theme System
+  Dual mode: Light (clean off-white) + Dark (near-black #0a0a14)
   Using RGB format for Tailwind alpha-channel support
 */
 
 :root {
-  --background: 255 255 255;
-  --surface: 248 250 252;
+  /* Light mode */
+  --background: 250 250 252;
+  --surface: 245 245 249;
   --card: 255 255 255;
-  --foreground: 15 23 42;
+  --foreground: 15 15 25;
   --muted: 100 116 139;
-  --primary: 11 30 58;
-  /* #0b1e3a - Adjusted for institutional Navy */
-  --accent: 14 165 165;
-  /* #0ea5a5 - Adjusted for Teal */
+  --primary: 15 15 25;
+  --accent: 59 130 246;
+  --highlight: 37 99 235;
 
-  /* Internal helper for persistent dark sections in Light Mode */
-  --surface-inverse: 11 30 58;
-  --foreground-inverse: 248 250 252;
+  --surface-inverse: 15 15 25;
+  --foreground-inverse: 240 240 245;
+
+  /* Subtle / transparency base — black in light mode */
+  --border-base: 0 0 0;
 }
 
 .dark {
-  --background: 8 15 28;
-  --surface: 15 23 42;
-  --card: 20 28 45;
-  --foreground: 226 232 240;
+  /* Dark mode — near-black */
+  --background: 10 10 20;
+  --surface: 12 12 22;
+  --card: 14 14 26;
+  --foreground: 240 240 245;
   --muted: 148 163 184;
-  --primary: 15 23 42;
-  --accent: 14 165 165;
+  --primary: 255 255 255;
+  --accent: 59 130 246;
+  --highlight: 96 165 250;
 
-  /* In Dark Mode, inverse sections match standard dark surfaces */
-  --surface-inverse: 8 15 28;
-  --foreground-inverse: 226 232 240;
+  --surface-inverse: 240 240 245;
+  --foreground-inverse: 10 10 20;
+
+  /* Subtle / transparency base — white in dark mode */
+  --border-base: 255 255 255;
 }

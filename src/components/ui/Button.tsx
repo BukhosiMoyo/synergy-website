@@ -11,8 +11,8 @@ export default function Button({ children, className, variant = "primary", size 
     const baseStyles = "rounded-lg font-medium transition-all duration-300 active:scale-95 inline-flex items-center justify-center gap-2";
 
     const variants = {
-        primary: "bg-accent text-white hover:opacity-90 shadow-md hover:shadow-lg",
-        outline: "border-2 border-accent text-accent hover:bg-accent hover:text-white",
+        primary: "bg-accent text-white hover:bg-highlight shadow-md hover:shadow-lg",
+        outline: "border-2 border-accent text-accent hover:bg-highlight hover:border-highlight hover:text-white",
     };
 
     const sizes = {

@@ -3,6 +3,7 @@ import Section from "@/components/ui/Section";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
+import { BGPattern } from "@/components/ui/bg-pattern";
 
 export const metadata: Metadata = {
     title: "Private Sector Asset Management | Operational Control & Visibility",
@@ -55,6 +56,7 @@ export default function PrivateSectorPage() {
             </Section>
 
             <Section variant="default" title="Enterprise-Focused Outcomes">
+                <BGPattern variant="grid" mask="fade-y" size={28} />
                 <p className="text-xl text-muted max-w-3xl mb-16 leading-relaxed">
                     Our Private Sector approach focuses on visibility, capital efficiency, and internal control, ensuring your asset base supports operational growth.
                 </p>
@@ -71,6 +73,7 @@ export default function PrivateSectorPage() {
             </Section>
 
             <Section variant="muted" title="Core Private Sector Outcomes">
+                <BGPattern variant="diagonal-stripes" mask="fade-edges" size={16} />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {[
                         { label: "Lifecycle Visibility", desc: "Full tracking from procurement to disposal." },

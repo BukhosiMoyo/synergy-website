@@ -1,28 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ThemeToggle() {
     const [mounted, setMounted] = useState(false);
-    const [theme, setTheme] = useState<"light" | "dark">("light");
+    const { theme, setTheme } = useTheme();
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
-        const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        const initialTheme = savedTheme || systemTheme;
-        setTheme(initialTheme);
-        document.documentElement.classList.toggle("dark", initialTheme === "dark");
     }, []);
 
     const toggleTheme = () => {
-        const newTheme = theme === "light" ? "dark" : "light";
-        setTheme(newTheme);
-        localStorage.setItem("theme", newTheme);
-        document.documentElement.classList.toggle("dark", newTheme === "dark");
+        setTheme(theme === "dark" ? "light" : "dark");
     };
 
     // Avoid hydration mismatch by rendering a placeholder of the exact same size

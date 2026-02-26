@@ -1,14 +1,23 @@
 import Container from "@/components/ui/Container";
 import Link from "next/link";
+import Image from "next/image";
 import { BLOG_BASE_URL } from "@/lib/seo";
 
-const FOOTER_LINKS = [
+const SERVICES_LINKS = [
     { label: "Asset Management", href: "/asset-management/" },
     { label: "Public Sector", href: "/public-sector-asset-management/" },
     { label: "Private Sector", href: "/private-sector-asset-management/" },
-    { label: "Solutions", href: "/solutions/" },
-    { label: "Case Studies", href: "/case-study/" },
+    { label: "All Solutions", href: "/solutions/" },
+    { label: "Locations", href: "/locations/" },
+];
+
+const PAGES_LINKS = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about/" },
+    { label: "Case Studies", href: "/case-studies/" },
     { label: "Insights", href: BLOG_BASE_URL },
+    { label: "Contact", href: "/contact-us/" },
+    { label: "Book Assessment", href: "/booking/" },
 ];
 
 const COMPLIANCE_LINKS = [
@@ -18,51 +27,87 @@ const COMPLIANCE_LINKS = [
 
 export default function Footer() {
     return (
-        <footer className="w-full border-t border-border bg-surface">
-            <Container className="py-20 grid grid-cols-1 md:grid-cols-4 gap-12">
-                <div className="md:col-span-2">
-                    <Link href="/" className="mb-6 inline-block">
-                        <img
-                            src="/brand/synergy Evolution New Logo light mode.png"
-                            alt="Synergy Evolution"
-                            className="h-10 w-auto dark:invert transition-all grayscale opacity-80 hover:grayscale-0 hover:opacity-100"
-                        />
-                    </Link>
-                    <p className="text-muted max-w-sm">
-                        Public and private sector asset management specialists delivering audit-ready compliance and governance frameworks.
-                    </p>
-                </div>
+        <footer className="w-full border-t border-subtle bg-surface">
+            <Container className="py-16 md:py-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                    {/* Brand */}
+                    <div className="lg:col-span-1">
+                        <Link href="/" className="mb-6 inline-block">
+                            <Image
+                                src="/brand/synergy Evolution New Logo light mode.png"
+                                alt="Synergy Evolution"
+                                width={150}
+                                height={40}
+                                className="h-10 w-auto dark:invert transition-all"
+                            />
+                        </Link>
+                        <p className="text-sm text-dim leading-relaxed max-w-xs">
+                            Public and private sector asset management specialists delivering audit-ready compliance and governance frameworks.
+                        </p>
+                    </div>
 
-                <div>
-                    <h4 className="font-bold mb-6 text-foreground uppercase tracking-wider text-xs">Navigation</h4>
-                    <ul className="space-y-4 text-sm text-muted">
-                        {FOOTER_LINKS.map((link) => (
-                            <li key={link.label}>
-                                <Link href={link.href} className="hover:text-accent transition-colors">{link.label}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                    {/* Services */}
+                    <div>
+                        <h4 className="font-semibold mb-5 text-foreground uppercase tracking-wider text-xs">
+                            Services
+                        </h4>
+                        <ul className="space-y-3 text-sm">
+                            {SERVICES_LINKS.map((link) => (
+                                <li key={link.label}>
+                                    <Link
+                                        href={link.href}
+                                        className="text-dim hover:text-accent transition-colors"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
-                <div>
-                    <h4 className="font-bold mb-6 text-foreground uppercase tracking-wider text-xs">Contact & Legal</h4>
-                    <ul className="space-y-4 text-sm text-muted mb-8">
-                        <li>Email: <span className="italic opacity-70 font-light">TBD</span></li>
-                        <li>Phone: <span className="italic opacity-70 font-light">TBD</span></li>
-                        <li>Location: South Africa</li>
-                    </ul>
-                    <ul className="space-y-4 text-sm text-text-muted">
-                        {COMPLIANCE_LINKS.map((link) => (
-                            <li key={link.label}>
-                                <Link href={link.href} className="hover:text-accent transition-colors">{link.label}</Link>
-                            </li>
-                        ))}
-                    </ul>
+                    {/* Pages */}
+                    <div>
+                        <h4 className="font-semibold mb-5 text-foreground uppercase tracking-wider text-xs">
+                            Pages
+                        </h4>
+                        <ul className="space-y-3 text-sm">
+                            {PAGES_LINKS.map((link) => (
+                                <li key={link.label}>
+                                    <Link
+                                        href={link.href}
+                                        className="text-dim hover:text-accent transition-colors"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Legal */}
+                    <div>
+                        <h4 className="font-semibold mb-5 text-foreground uppercase tracking-wider text-xs">
+                            Legal
+                        </h4>
+                        <ul className="space-y-3 text-sm">
+                            {COMPLIANCE_LINKS.map((link) => (
+                                <li key={link.label}>
+                                    <Link
+                                        href={link.href}
+                                        className="text-dim hover:text-accent transition-colors"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                            <li className="text-dim">Location: South Africa</li>
+                        </ul>
+                    </div>
                 </div>
             </Container>
 
-            <div className="border-t border-border py-8">
-                <Container className="text-sm text-muted text-center">
+            <div className="border-t border-subtle py-6">
+                <Container className="text-xs text-dimmer text-center">
                     © {new Date().getFullYear()} Synergy Evolution. All rights reserved.
                 </Container>
             </div>
