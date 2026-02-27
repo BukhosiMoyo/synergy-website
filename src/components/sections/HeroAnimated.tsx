@@ -8,14 +8,6 @@ import { ArrowRight, BarChart } from "lucide-react";
 import { DottedSurface } from "@/components/ui/dotted-surface";
 import { cn } from "@/lib/utils";
 
-const TRUSTED_BY = [
-    "COGTA National",
-    "City of Tshwane",
-    "NWU University",
-    "DWS Department",
-    "National Treasury",
-    "Gauteng Health",
-];
 
 export default function HeroAnimated() {
     const [surfaceReady, setSurfaceReady] = useState(false);
@@ -138,35 +130,6 @@ export default function HeroAnimated() {
                 </div>
             </Container>
 
-            {/* Trust Marquee Bar */}
-            <AnimatePresence>
-                {surfaceReady && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                        className="absolute bottom-0 left-0 right-0 z-10 border-t border-subtle bg-background/80 backdrop-blur-sm"
-                    >
-                        <Container className="py-4">
-                            <div className="flex items-center gap-8 overflow-hidden">
-                                <span className="text-[10px] text-dimmest uppercase tracking-wider whitespace-nowrap shrink-0">
-                                    Trusted by
-                                </span>
-                                <div className="flex items-center gap-10 animate-marquee">
-                                    {[...TRUSTED_BY, ...TRUSTED_BY].map((name, idx) => (
-                                        <span
-                                            key={`${name}-${idx}`}
-                                            className="text-xs font-medium text-dimmest whitespace-nowrap"
-                                        >
-                                            {name}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </Container>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </section>
     );
 }
