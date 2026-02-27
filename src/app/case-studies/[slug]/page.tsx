@@ -7,9 +7,14 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Target, Lightbulb, Box, CheckCircle2, Banknote, Boxes, Clock, Globe } from "lucide-react";
 import { caseStudies } from "@/data/case-studies";
 
+type PageProps = {
+    params: Promise<{ slug: string }>;
+};
+
 // Enable Next.js to statically generate metadata for SEO
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-    const study = caseStudies.find(s => s.slug === params.slug);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const study = caseStudies.find(s => s.slug === slug);
     if (!study) return { title: "Case Study Not Found | Synergy Evolution" };
 
     return {
@@ -25,8 +30,9 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function CaseStudyDetail({ params }: { params: { slug: string } }) {
-    const study = caseStudies.find(s => s.slug === params.slug);
+export default async function CaseStudyDetail({ params }: PageProps) {
+    const { slug } = await params;
+    const study = caseStudies.find(s => s.slug === slug);
 
     if (!study) {
         notFound();
@@ -83,8 +89,8 @@ export default function CaseStudyDetail({ params }: { params: { slug: string } }
                 <div className="bg-surface border-b border-border py-8">
                     <Container>
                         <div className={`grid gap-6 max-w-4xl mx-auto ${metrics.length === 4 ? 'grid-cols-2 md:grid-cols-4' :
-                                metrics.length === 3 ? 'grid-cols-1 md:grid-cols-3' :
-                                    'grid-cols-1 md:grid-cols-2'
+                            metrics.length === 3 ? 'grid-cols-1 md:grid-cols-3' :
+                                'grid-cols-1 md:grid-cols-2'
                             }`}>
                             {metrics.map((metric) => (
                                 <div key={metric.label} className="text-center">

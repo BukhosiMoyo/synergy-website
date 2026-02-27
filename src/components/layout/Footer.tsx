@@ -23,6 +23,8 @@ const PAGES_LINKS = [
 const COMPLIANCE_LINKS = [
     { label: "Privacy Policy", href: "/privacy-policy/" },
     { label: "Disclaimer", href: "/message-disclaimer/" },
+    { label: "Sitemap", href: "/sitemap-html/" },
+    { label: "XML Sitemap", href: "/sitemap.xml" },
 ];
 
 export default function Footer() {

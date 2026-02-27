@@ -14,9 +14,14 @@ export async function generateStaticParams() {
     }));
 }
 
+type PageProps = {
+    params: Promise<{ city: string }>;
+};
+
 // Dynamic SEO metadata
-export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
-    const location = locations.find(l => l.slug === params.city);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { city } = await params;
+    const location = locations.find(l => l.slug === city);
     if (!location) return { title: "Location Not Found | Synergy Evolution" };
 
     return {
@@ -49,8 +54,9 @@ const faqs = [
     }
 ];
 
-export default function CityPage({ params }: { params: { city: string } }) {
-    const location = locations.find(l => l.slug === params.city);
+export default async function CityPage({ params }: PageProps) {
+    const { city } = await params;
+    const location = locations.find(l => l.slug === city);
 
     if (!location) {
         notFound();

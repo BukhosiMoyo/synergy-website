@@ -10,9 +10,14 @@ import { caseStudies } from "@/data/case-studies";
 import { BGPattern } from "@/components/ui/bg-pattern";
 import FAQAccordion from "@/components/sections/FAQAccordion";
 
+type PageProps = {
+    params: Promise<{ slug: string }>;
+};
+
 // Enable Next.js to statically generate metadata for SEO
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-    const solution = solutions.find(s => s.slug === params.slug);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const solution = solutions.find(s => s.slug === slug);
     if (!solution) return { title: "Solution Not Found | Synergy Evolution" };
 
     return {
@@ -28,8 +33,9 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function SolutionDetail({ params }: { params: { slug: string } }) {
-    const solution = solutions.find(s => s.slug === params.slug);
+export default async function SolutionDetail({ params }: PageProps) {
+    const { slug } = await params;
+    const solution = solutions.find(s => s.slug === slug);
 
     if (!solution) {
         notFound();
