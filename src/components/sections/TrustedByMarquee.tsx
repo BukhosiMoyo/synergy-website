@@ -32,7 +32,7 @@ export default function TrustedByMarquee() {
 
                 <LogoCloud
                     logos={clients}
-                    className="[&_img]:h-12 [&_img]:md:h-14 [&_img]:opacity-60 [&_img]:hover:opacity-100 [&_img]:transition-opacity [&_img]:duration-300 [&_img]:grayscale [&_img]:hover:grayscale-0 [&_img]:dark:brightness-100 [&_img]:dark:invert-0"
+                    className="[&_img]:h-16 [&_img]:md:h-20 [&_img]:opacity-60 [&_img]:hover:opacity-100 [&_img]:transition-opacity [&_img]:duration-300 [&_img]:grayscale [&_img]:hover:grayscale-0 [&_img]:dark:brightness-100 [&_img]:dark:invert-0"
                 />
 
                 <div className="mt-5 h-px bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
